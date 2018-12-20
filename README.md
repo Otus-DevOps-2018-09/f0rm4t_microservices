@@ -1,6 +1,10 @@
 # f0rm4t_microservices
 f0rm4t microservices repository
 
+# GitLab CI #1
+
+Добавлена конфигурация Docker Compose (`./gitlab-ci/docker-compose.yml`) для разворачивания GitLab CI и конфигурация для сборки и тестирования приложения (`./gitlab-ci.yml`).
+
 # Docker #4
 
 Добавлена конфигурация docker-compose: `./src/docker-compose.yml`. Необходимо скопировать файл `./src/.env.example` в `./src/.env` и внести необходимые изменения:
