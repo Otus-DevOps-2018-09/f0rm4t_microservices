@@ -1,6 +1,27 @@
 # f0rm4t_microservices
 f0rm4t microservices repository
 
+# Docker #4
+
+Добавлена конфигурация docker-compose: `./src/docker-compose.yml`. Необходимо скопировать файл `./src/.env.example` в `./src/.env` и внести необходимые изменения:
+
+```
+COMPOSE_PROJECT_NAME=reddit
+USERNAME=
+UI_PORT=9292
+UI_VERSION=1.0
+POST_VERSION=1.0
+COMMENT_VERSION=1.0
+MONGO_VERSION=3.2
+```
+
+Запуск проекта:
+
+```bash
+docker-compose up -d
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d # local env
+```
+
 # Docker #3
 
 Добавлен код микросервисов и Dockerfile к каждому из них (директория `./src`). Проведена оптимизация сборки образа для сервиса ui.
