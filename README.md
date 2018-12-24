@@ -1,6 +1,34 @@
 # f0rm4t_microservices
 f0rm4t microservices repository
 
+# Docker #3
+
+Добавлен код микросервисов и Dockerfile к каждому из них (директория `./src`). Проведена оптимизация сборки образа для сервиса ui.
+
+Сборка образов:
+
+```bash
+docker build -t f0rm4t/post:1.0 ./post-py
+docker build -t f0rm4t/comment:1.0 ./comment
+docker build -t f0rm4t/ui:1.0 ./ui
+```
+
+Создание сети и тома для MongoDB:
+
+```bash
+docker network create reddit
+docker volume create reddit_db
+```
+
+Запуск контейнеров:
+
+```bash
+docker run -d --network=reddit --network-alias=db -v reddit_db:/data/db mongo:latest
+docker run -d --network=reddit --network-alias=post -e POST_DATABASE_HOST=db f0rm4t/post:1.0
+docker run -d --network=reddit --network-alias=comment -e COMMENT_DATABASE_HOST=db f0rm4t/comment:1.0
+docker run -d --network=reddit -e POST_SERVICE_HOST=post -e COMMENT_SERVICE_HOST=comment -p 9292:9292 f0rm4t/ui:1.0
+```
+
 # Docker #2
 
 Добавлен Dockerfile для сборки образа otus-reddit с установленным приложением и требуемым окружением. Образ добавлен на hub.docker.com: f0rm4t/otus-reddit.
